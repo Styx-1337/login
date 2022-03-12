@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+	body{
+		background: #100a1c;
+		background-image: radial-gradient(50% 30% ellipse at center top, #000000 0%, rgba(0,0,0,0) 100%), radial-gradient(60% 50% ellipse at center bottom, #000000 0%, #191b1c 100%);
+		background-attachment: fixed;
+		position: relative;
+	}
+	.loginCard{
+		position: absolute;
+		top: 35%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 50px 30px;
+		background-color: #0000009e;
+		/*border-radius: 20px;*/
+		/*box-shadow: 3px 3px 5px 6px #000;*/
+	}
+
+	input{
+		border:none;
+		border-bottom: 1px solid #cdcdcd;
+		background-color:#fff0;
+		outline: none;
+		text-shadow: none;
+		box-shadow: none;
+		margin-top: 50px;
+		color:#fff;
+		font-size: 26px;
+	}
+	.btn {
+		margin-top:50px;
+		outline: 0;
+		position: relative;
+		display: inline-block;
+		padding: 5px 10px;
+		font-size: 20px;
+		overflow: hidden;
+		cursor: pointer;
+		/*border: 2px solid #17a2b8;*/
+		/*background-color: #17a2b8;*/
+		border: 2px solid #c83839;
+		background-color: #c83839;
+		color: #fff;
+		font-weight: 600;
+		transition: box-shadow 0.5s ease-in-out, border-color 0.5s ease-in-out;
+		width: 100%;
+	}
+	.btn:hover {
+		background-color: #c83839;
+		color: #000;
+		box-shadow: 0 0 5px #c83839, 0 0 20px #c83839cc, 0 0 35px #c83839b3, 0 0 50px #c8383999;
+		border-color: #c83839;
+	}
+	#ErrorMessage{
+		color:red;
+		display: none;
+	}
+	@keyframes enlarge{
+		to{
+			transform: scale(2);
+		}
+	}
+	.imageLarge{
+		animation: enlarge 3s forwards;
+	}
+	.hidden {
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 0s 1s, opacity 1s linear;
+	}
+	#particles-js{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-image: url('');
+		background-size: cover;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	}
+	@media only screen and (max-width: 600px) {
+		.loginCard{
+			padding: 50px 10px;
+			top: 50%;
+		}
+		@keyframes enlarge{
+			to{
+				transform: scale(1.2);
+			}
+		}
+	}
+</style>
+</head>
+<body>
+	<div id="particles-js">
+		<div class="loginCard">
+			<img id="image" src="test.svg" style="width: 320px;" alt="logo"><br>
+			<input placeholder="Username" id="Uname" class="form-control" type="text"><br>
+			<input placeholder="Password" id="Pass" class="form-control" type="password"><br>
+			<p style="margin:0px;" id="ErrorMessage">Please ensure all fields are filled</p>
+			<button id="BtnBtn" class="btn" onclick="login()">Submit</button>
+		</div>
+	</div>
+	<script src="particles.min.js"></script>
+	<script src="app.js"></script>
+	<script>
+		function login(){
+			if (document.getElementById("Uname").value == "" || document.getElementById("Pass").value == ""){
+				document.getElementById("ErrorMessage").style.display = "block";
+			}
+			else{
+				document.getElementById("ErrorMessage").style.display = "none";
+				document.getElementById("Uname").classList.add('hidden');
+				document.getElementById("Pass").classList.add('hidden');
+				document.getElementById("BtnBtn").classList.add('hidden');
+
+				document.getElementsByClassName("loginCard")[0].style.boxShadow = "none";
+				document.getElementsByClassName("loginCard")[0].style.height = "0px";
+				document.getElementsByClassName("loginCard")[0].style.padding = "0px";
+
+				document.getElementById("image").classList.add('imageLarge');
+
+			}
+		}
+	</script>
+</body>
+</html>
